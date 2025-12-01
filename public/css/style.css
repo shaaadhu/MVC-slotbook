@@ -1,0 +1,119 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;1,400&family=Varela+Round&display=swap');
+
+body, html {
+   height: 100%;
+   
+}
+* { box-sizing: border-box; 
+ margin: 0;
+    padding: 0;}
+body { background-color: #a8baf8c4; font-family: Ubuntu, sans-serif; }
+
+.sidebar {
+  background-color: #fdfcfc;
+  padding-top: 10px;
+  border-radius: 16px;
+  /* max-height: 100vh; */
+  
+ 
+}
+
+.sidebar .nav-link {
+  color: rgb(0, 0, 0);
+  margin: 1px 10px;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+
+
+.step-circle{
+    width: 35px;
+  height: 35px;
+   border-radius: 50%;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  color: #fff;
+
+}
+.nav-link.active .step-circle {
+  background-color: #0885c4;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+
+.step-circle.inactive {
+  background-color: #e2d8d8; 
+}
+
+.step-line {
+  height: 30px;
+  border-left: 3px solid rgba(204, 198, 198, 0.3);
+  margin: 0 0 0 42px;
+}
+
+
+.step-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.step-description {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+
+.sidebar .nav-link.active {
+  opacity: 1;
+  pointer-events: auto !important;
+}
+
+
+
+.nav-link.completed .step-circle{
+     background-color: #17c9ba;
+
+}
+
+
+.card {
+    
+    
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 20px;
+  /* min-height: 100vh;  */
+
+}
+.res{
+  background-color: #eeeaeacb;
+  font-size: small;
+}
+
+option[disabled][value]:not([value=""]) {
+  color: #999;
+  background-color: #f8f9fa;
+}
+
+.bi-bookmark-star, .bi-telephone{
+    color: #0885c4;
+    font-size: 20px;
+}
+
+.cbox:has(.slot-checkbox:checked){
+  outline: 2px solid rgb(83, 85, 226);
+ 
+}
+
+.slot-available {
+    color: rgb(25, 218, 153);
+    margin-left: 10px;
+}
