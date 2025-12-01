@@ -114,7 +114,7 @@ function fetchAndUpdateSlots(dateStr) {
     }
   
     cb.disabled = false;
-    label.textContent += ` (${remaining}/${MAX})`;
+    label.textContent += "";
     // label.innerHTML = `(${remaining}/${MAX}) <span class="slot-available">Slots Available</span>`;
 
     let oldSpan = label.querySelector("span");
@@ -122,7 +122,7 @@ if (oldSpan) oldSpan.remove();
 
 
 const span = document.createElement("span");
-span.textContent = "Slots Available";
+span.textContent =` (${remaining}/${MAX}) Slots Available`;
 span.style.color = "#17d3aaff";
 span.style.marginLeft = "4px"; 
 
