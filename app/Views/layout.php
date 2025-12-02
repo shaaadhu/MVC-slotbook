@@ -16,7 +16,7 @@
  
   <div class="container ">
 
-   <div class="row justify-content-center min-vh-50 d-flex py-5  overflow-hidden">
+   <div class="row justify-content-center  d-flex py-5  overflow-hidden">
 
     <?php include __DIR__ . '/leftbar.php'; ?>
 
@@ -24,13 +24,13 @@
         <div class="tab-content ">
 
           
-         <?php include __DIR__ . '/personal-info.php'; ?> 
+        <?php include __DIR__ . '/personal-info.php'; ?> 
 
-         <?php include __DIR__ . '/slot-booking.php'; ?>
+        <?php include __DIR__ . '/slot-booking.php'; ?>
 
-         <?php include __DIR__ . '/confirm-booking.php'; ?> 
+        <?php include __DIR__ . '/confirm-booking.php'; ?> 
 
-         <?php include __DIR__ . '/success.php'; ?> 
+        <?php include __DIR__ . '/success.php'; ?> 
 
           
 

@@ -12,10 +12,9 @@ public function checkEmail() {
   
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        $email = $_POST['email'] ?? '';
+        $email = $_POST['email'] ;
         $model=new BookingModel;    
         $emailExists = $model->findEmail($email);
-        header('Content-Type: application/json');
         if ($emailExists) {        
             echo json_encode(['status' => 'error']);
         } else {            
@@ -36,7 +35,6 @@ public function getSlots(){
             'message' => 'Slot data loaded successfully.',
             'data' => $availabilityData
         ];
-        header('Content-Type: application/json');
         echo json_encode( $response);
         exit;
         
@@ -53,7 +51,7 @@ public function bookSlot(){
         $time_slot = trim($_POST['time_slot'] );
         $model=new BookingModel;   
         $booked = $model->booked($name,$email,$department,$date,$time_slot);
-         header('Content-Type: application/json');        
+
         echo json_encode($booked);
         exit;
      }

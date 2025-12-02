@@ -1,5 +1,6 @@
 const slotDateInput = document.getElementById('slotDate');
 
+
 const navLinks = document.querySelectorAll('.sidebar .nav-link');
 const tabs = document.querySelectorAll('.tab-pane');
 
@@ -32,41 +33,42 @@ function setMinDate(){
   slotDateInput.min= `${yyyy}-${mm}-${dd}`;
 }
 
-function disablePastSlotsIfToday() {
-  const selectedDateValue = slotDateInput.value;
-  if (!selectedDateValue) return;
-  const now = new Date();
-  const selected = new Date(selectedDateValue);
-  const isToday = selected.getFullYear() === now.getFullYear()
-               && selected.getMonth() === now.getMonth()
-               && selected.getDate() === now.getDate();
-  const currentMinutes = now.getHours()*60 + now.getMinutes();
+// function disablePastSlotsIfToday() {
+//   const selectedDateValue = slotDateInput.value;
+//   // if (!selectedDateValue) return;
+//   // const now = new Date();
+//   const selected = new Date(selectedDateValue);
+//   // const isToday = selected.getFullYear() === now.getFullYear()
+//   //              && selected.getMonth() === now.getMonth()
+//   //              && selected.getDate() === now.getDate();
+//   const currentMinutes = selectedDateValue.getHours()*60 + selectedDateValue.getMinutes();
 
   
-   document.querySelectorAll(".slot-checkbox").forEach(cb => {
-    const label = cb.nextElementSibling; 
-    cb.disabled = false;
-    label.style.color = "black";
+//    document.querySelectorAll(".slot-checkbox").forEach(cb => {
+//     const label = cb.nextElementSibling; 
+//     cb.disabled = false;
+//     label.style.color = "black";
 
-    // Remove expired text if added before
-    // label.textContent = label.textContent.replace(" (Expired)", "");
-    label.textContent = `${label.textContent.split(" (")[0]} (Session Expired)`;
+//     // Remove expired text if added before
+//     // label.textContent = label.textContent.replace(" (Expired)", "");
+//     label.textContent = `${label.textContent.split(" (")[0]} (Session Expired)`;
+//     const [hour, minute] = cb.value.split(":").map(Number);
+//       const slotStartMin = hour * 60 + minute;
 
-    if (isToday) {
-      const [hour, minute] = cb.value.split(":").map(Number);
-      const slotStartMin = hour * 60 + minute;
+//       if (currentMinutes >= slotStartMin) {
+//         cb.disabled = true;
+//         label.textContent += " (Session Expired)";
+//         label.style.color = "#999";
+//       }
 
-      if (currentMinutes >= slotStartMin) {
-        cb.disabled = true;
-        label.textContent += " (Session Expired)";
-        label.style.color = "#999";
-      }
-    }
-  });
-}
+//     // if (isToday) {
+      
+//     // }
+//   });
+// }
 
 function fetchAndUpdateSlots(dateStr) {
-  if (!dateStr) return;
+  
 
 
   fetch(`http://localhost/MVC/public/home/getSlots?date=${dateStr}`)
@@ -115,7 +117,7 @@ function fetchAndUpdateSlots(dateStr) {
   
     cb.disabled = false;
     label.textContent += "";
-    // label.innerHTML = `(${remaining}/${MAX}) <span class="slot-available">Slots Available</span>`;
+    
 
     let oldSpan = label.querySelector("span");
 if (oldSpan) oldSpan.remove();
@@ -186,7 +188,7 @@ emailInput.addEventListener("blur", function () {
     fetch('http://localhost/MVC/public/home/checkEmail', { 
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ email: email }) 
+        body: new URLSearchParams({email}) 
     })
     .then(r => r.json())
     .then(data => {
@@ -205,7 +207,7 @@ emailInput.addEventListener("blur", function () {
         }
     })
     .catch(error => console.error('Error:', error));
-    // fetchAndUpdateSlots(date);
+   
 
 });
 
@@ -226,13 +228,11 @@ document.getElementById('personalForm').addEventListener('submit', function (e) 
   }
   
 
-   const emailInput = document.getElementById('emailInput');
-  const email = emailInput.value.trim();
   setMinDate();
   slotCheckboxBehaviour();
   const selectedDate = slotDateInput.value;
-  if (!selectedDate) return;
-   disablePastSlotsIfToday();    
+  
+  //  disablePastSlotsIfToday();    
   fetchAndUpdateSlots(selectedDate);
   
   markTabCompleted('personal-info');
@@ -242,8 +242,8 @@ document.getElementById('personalForm').addEventListener('submit', function (e) 
 
 slotDateInput.addEventListener('change', function () {
   const selectedDate = this.value;
-  if (!selectedDate) return;
-  disablePastSlotsIfToday();    
+  
+  // disablePastSlotsIfToday();    
   fetchAndUpdateSlots(selectedDate);
 });
 
@@ -255,14 +255,6 @@ document.getElementById('slotForm').addEventListener('submit', function(e){
   const selectedTime = document.querySelector('input[name="timeSlot"]:checked');
 
 
-  if (!date) {
-  document.getElementById('slotDate').classList.add('is-invalid');
-  return;
-} else {
-  document.getElementById('slotDate').classList.remove('is-invalid');
-}
-
-
   const name =document.getElementById('name').value;
   const email = document.getElementById('emailInput').value;
   const phone=document.getElementById('phone').value;
@@ -271,7 +263,7 @@ document.getElementById('slotForm').addEventListener('submit', function(e){
  const time = selectedTime.value;
  const reason=document.getElementById('reason').value;
 
-  const confirmDetails = document.getElementById('confirmDetails');
+ 
   
   document.getElementById("rev_fullname").textContent = name;
 document.getElementById("rev_email").textContent = email;
